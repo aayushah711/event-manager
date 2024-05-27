@@ -15,8 +15,8 @@ A backend system for managing virtual events, including user registration, event
 
 1. Clone the repository
 2. Install dependencies: `npm install`
-3. Configure environment variables in `config.js`
-4. Start the server: `node apps.js`
+3. Configure environment variables in `.env`
+4. Start the server: `node app.js`
 
 ## Endpoints
 

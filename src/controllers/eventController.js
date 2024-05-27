@@ -1,6 +1,7 @@
 const Event = require("../models/Event");
 const eventValidator = require("../validators/eventValidator");
 const jwt = require("jsonwebtoken");
+const sendEmail = require("../utils/sendEmail");
 require("dotenv").config();
 
 exports.createEvent = async (req, res) => {
@@ -99,6 +100,13 @@ exports.registerForEvent = async (req, res) => {
     if (!event.participants.includes(req.user.id)) {
       event.participants.push(req.user.id);
       await event.save();
+      // Send confirmation email
+      await sendEmail(
+        req.user.email,
+        "Event Registration Confirmation",
+        `You have successfully registered for ${event.title} event!`
+      );
+
       res.status(200).json({ message: "Registered for event" });
     } else {
       res.status(400).json({ error: "Already registered" });

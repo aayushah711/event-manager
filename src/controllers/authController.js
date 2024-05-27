@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const sendEmail = require("../utils/sendEmail");
 const registerValidator = require("../validators/registerValidator");
 const loginValidator = require("../validators/loginValidator");
 
@@ -17,13 +16,6 @@ exports.register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     user = new User({ email, password: hashedPassword, role });
     await user.save();
-
-    // Send confirmation email
-    // await sendEmail(
-    //   email,
-    //   "Registration Confirmation",
-    //   "You have successfully registered!"
-    // );
 
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
