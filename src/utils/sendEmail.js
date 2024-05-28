@@ -7,7 +7,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 function sendEmail(to, subject, text) {
   const msg = {
     to,
-    from: "aayu.airtribe@gmail.com",
+    from: process.env.USER_EMAIL,
     subject,
     text,
   };
