@@ -10,6 +10,7 @@ This is a backend system for a virtual event management platform focusing on use
 - Event creation, updation, and deletion by authorized users
 - Event registration for participants
 - Email notifications on successful registration
+- Retries for email not sent
 
 ## Technologies
 
@@ -81,7 +82,7 @@ This is a backend system for a virtual event management platform focusing on use
   }
   ```
 
-User Login
+### User Login
 
 - Endpoint: `POST /login`
 - Description: Log in a user.
@@ -111,7 +112,7 @@ User Login
   }
   ```
 
-Create Event
+### Create Event
 
 - Endpoint: `POST /events`
 - Description: Create a new event.
@@ -158,7 +159,7 @@ Create Event
 
   ```
 
-Update Event
+### Update Event
 
 - Endpoint: `PUT /events/:id`
 - Description: Update an event.
@@ -204,7 +205,7 @@ Update Event
   }
   ```
 
-Delete Event
+### Delete Event
 
 - Endpoint: `DELETE /events/:id`
 - Description: Delete an event.
@@ -226,7 +227,7 @@ Delete Event
   }
   ```
 
-Get All Events
+### Get All Events
 
 - Endpoint: `GET /events`
 - Description: Get a list of all events.
@@ -262,7 +263,7 @@ Get All Events
   ]
   ```
 
-Register for an Event
+### Register for an Event
 
 - Endpoint: `POST /events/:id/register`
 - Description: Register for an event.
@@ -297,7 +298,7 @@ Register for an Event
   }
   ```
 
-Get User's Events
+### Get User's Events
 
 - Endpoint: `GET /user/events`
 - Description: Get all events the user has registered for.
@@ -330,3 +331,7 @@ Get User's Events
     }
   ]
   ```
+
+## Email Sending with Retry Mechanism
+
+The `sendEmailWithRetry` function implements a retry mechanism to handle transient errors when sending emails. This ensures that temporary issues with the email service do not prevent emails from being sent.

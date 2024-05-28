@@ -103,7 +103,7 @@ exports.registerForEvent = async (req, res) => {
       res.status(200).json({ message: "Registered for event" });
 
       // Send confirmation email
-      sendEmail(
+      await sendEmail(
         req.user.email,
         "Event Registration Confirmation",
         `You have successfully registered for ${event.title} event!`
