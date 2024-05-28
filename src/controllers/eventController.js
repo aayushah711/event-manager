@@ -100,14 +100,14 @@ exports.registerForEvent = async (req, res) => {
     if (!event.participants.includes(req.user.id)) {
       event.participants.push(req.user.id);
       await event.save();
+      res.status(200).json({ message: "Registered for event" });
+
       // Send confirmation email
-      await sendEmail(
+      sendEmail(
         req.user.email,
         "Event Registration Confirmation",
         `You have successfully registered for ${event.title} event!`
       );
-
-      res.status(200).json({ message: "Registered for event" });
     } else {
       res.status(400).json({ error: "Already registered" });
     }
