@@ -14,7 +14,12 @@ describe("Event Validator", () => {
   });
 
   it("should return error for an incorrect event", () => {
-    const event = { title: "", date: "2024-05-30" };
+    const event = {
+      title: "",
+      date: "2024-05-30",
+      time: "18:30",
+      description: "Test Description",
+    };
     const { error } = eventValidator.validate(event);
     expect(error).to.exist;
     if (error) {

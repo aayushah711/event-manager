@@ -3,7 +3,7 @@ const { expect } = require("chai");
 
 describe("Login Validator", () => {
   it("should validate a correct login", () => {
-    const user = { email: "testuser", password: "password123" };
+    const user = { email: "test@example.com", password: "password123" };
     const { error } = loginValidator.validate(user);
     expect(error).to.be.undefined;
   });

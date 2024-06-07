@@ -43,6 +43,7 @@ This is a backend system for a virtual event management platform focusing on use
    PORT=3000
    API_SECRET="api_secret"
    MONGODB_URI="mongodb://localhost:27017/event-manager-db"
+   TEST_MONGODB_URI="mongodb://localhost:27017/event-manager-test-db"
    USER_EMAIL="authenticated_sender_email"
    SENDGRID_API_KEY="sendgrid_api_key"
    ```
