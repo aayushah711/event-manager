@@ -3,6 +3,7 @@ const sinon = require("sinon");
 const chaiHttp = require("chai-http");
 const app = require("../../../app");
 const Event = require("../../models/Event");
+const ACCESS_TOKEN = require("../constants");
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -70,9 +71,8 @@ describe("Event Controller", () => {
 
 // Mocking with Sinon
 describe("Event Controller with Sinon", () => {
-  let findStub, createStub, authenticateTokenStub;
-  const accessToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmMwMDMyMTlkNzkwYmZhZjgwOTI2MyIsImVtYWlsIjoidGVzdEBleGFtcGxlLmNvbSIsInJvbGUiOiJvcmdhbml6ZXIiLCJpYXQiOjE3MTgzNTM5NzAsImV4cCI6MTcxODM1NzU3MH0.gmtj9FgiMGgE8LE-rKQ57MFjVHu24Dhny5lSywQgYSU";
+  let findStub, createStub;
+  const accessToken = ACCESS_TOKEN;
 
   beforeEach(() => {
     findStub = sinon.stub(Event, "find");

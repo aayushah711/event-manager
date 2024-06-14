@@ -1,15 +1,18 @@
 const chai = require("chai");
 const sinon = require("sinon");
 const authMiddleware = require("../../middleware/auth");
+const ACCESS_TOKEN = require("../constants");
 
 const { expect } = chai;
 
 describe("Auth Middleware", () => {
   it("should call next() if user is authenticated", () => {
-    const req = { isAuthenticated: sinon.stub().returns(true) };
+    const accessToken = ACCESS_TOKEN;
+
+    const req = { headers: { authorization: `Bearer ${accessToken}` } };
+
     const res = {};
     const next = sinon.spy();
-
     try {
       authMiddleware(req, res, next);
       expect(next.calledOnce).to.be.true;
@@ -25,7 +28,7 @@ describe("Auth Middleware", () => {
     const next = sinon.spy();
 
     try {
-      const val = await authMiddleware(req, res, next);
+      await authMiddleware(req, res, next);
       expect(res.status.calledWith(401)).to.be.true;
       expect(
         res.json.calledWith({
